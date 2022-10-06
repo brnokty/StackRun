@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using Random = UnityEngine.Random;
 
 public enum Direction
 {
@@ -76,6 +77,10 @@ public class PieceController : MonoBehaviour
 
     private void DivideObject(float value)
     {
+        print("Value : " + value);
+
+        if (Mathf.Abs(value) < 0.1f)
+            AudioManager.Instance.PlayAudio(0);
         bool isFirstFalling = value > 0;
 
         var falling = Instantiate(fallingPrefab).transform;
@@ -145,6 +150,7 @@ public class PieceController : MonoBehaviour
         if (IsFail(distance))
         {
             Debug.Log("game over");
+
             return;
         }
 
@@ -157,7 +163,7 @@ public class PieceController : MonoBehaviour
         var newPosition = last.position;
         newPosition.z += transform.localScale.z;
 
-        newPosition.x = limit;
+        newPosition.x = (Random.Range(0, 2) > 0 ? 1 : -1) * limit;
         transform.position = newPosition;
 
         transform.localScale = last.localScale;
