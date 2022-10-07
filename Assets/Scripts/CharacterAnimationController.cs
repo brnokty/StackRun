@@ -40,8 +40,13 @@ public class CharacterAnimationController : MonoBehaviour
         SetBool("Run", value);
     }
 
-    
-    
+    //Fall
+    public void SwitchToFallAnimation(bool value)
+    {
+        SetBool("Fall", value);
+    }
+
+
     //Dance
     public void SwitchToDanceAnimation(bool value)
     {

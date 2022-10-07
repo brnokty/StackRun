@@ -33,16 +33,11 @@ public class PieceController : MonoBehaviour
     private bool _isStop;
 
     private int _score;
-    [SerializeField] private TextMeshProUGUI textScore;
 
-    private void Start()
-    {
-        textScore.text = "";
-    }
 
     private void UpdateText()
     {
-        textScore.SetText(_score.ToString());
+        UIManager.Instance.gamePanel.SetPointText(_score);
     }
 
     private void Update()
@@ -150,15 +145,14 @@ public class PieceController : MonoBehaviour
         if (IsFail(distance))
         {
             Debug.Log("game over");
-
+            playerController.Fail(transform);
+            gameObject.AddComponent<Rigidbody>();
             return;
         }
 
         DivideObject(distance.x);
         playerController.GoNextStack(last);
 
-        //Reset
-        // _isAxisX = !_isAxisX;
 
         var newPosition = last.position;
         newPosition.z += transform.localScale.z;
@@ -172,8 +166,6 @@ public class PieceController : MonoBehaviour
 
         _score++;
         UpdateText();
-
-        // cameraManager.Up();
     }
 
     private bool IsFail(Vector3 distance)
@@ -182,5 +174,10 @@ public class PieceController : MonoBehaviour
         var current = Mathf.Abs(distance.x);
 
         return current >= origin;
+    }
+
+    public void Win()
+    {
+        gameObject.SetActive(false);
     }
 }
