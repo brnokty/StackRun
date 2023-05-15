@@ -2,7 +2,7 @@
 
 ## Description
 
-This project is created to develop a 2D platform game. In the game, we manage the platform, not the character, the incoming platform moves to the right and left, we tap to stop the platform at the position we want, we try to reach the finish by repeating this.
+This project is created to develop a 3D platform game. In the game, we manage the platform, not the character, the incoming platform moves to the right and left, we tap to stop the platform at the position we want, we try to reach the finish by repeating this.
 
 ## Table of Contents
 
